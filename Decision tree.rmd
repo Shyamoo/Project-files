@@ -1,0 +1,29 @@
+---
+title: "Decision tree"
+output:
+  pdf_document: default
+  html_document: default
+date: '2022-11-04'
+---
+
+```{r}
+data(iris) #loading in built dataset Iris
+summary(iris)
+```
+
+```{r}
+nrow <- nrow(iris); ncol <- ncol(iris)  #inline code
+iris[1:4,]  # View first four rows of data set
+```
+#Load required package:
+```{r}
+library(caret)
+library(tidyverse)
+modFit <- train(Species ~., method = "rpart", data=iris) #Fit model
+print(modFit$finalModel)   #Summarize model
+```
+
+```{r}
+library(rattle)
+fancyRpartPlot(modFit$finalModel) # Plot decision tree
+```
